@@ -1,5 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -36,7 +36,7 @@ export default function Contact() {
       onError: (err) => {
         toast({
           title: "Error",
-          description: err.response?.data?.error || "Failed to send message. Please try again.",
+          description: (err as any).response?.data?.error || err.message || "Failed to send message. Please try again.",
           variant: "destructive"
         });
       }

@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, MessageCircle, CheckCircle2, HelpCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 
 const faqFormSchema = z.object({
   customerName: z.string().min(1, "Name is required"),

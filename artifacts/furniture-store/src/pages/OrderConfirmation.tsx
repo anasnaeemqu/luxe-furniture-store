@@ -1,6 +1,6 @@
 import { Link, useSearch } from "wouter";
 import { Layout } from "@/components/layout/Layout";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { CheckCircle2, Package, Mail, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 

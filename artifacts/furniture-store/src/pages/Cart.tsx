@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { Layout } from "@/components/layout/Layout";
 import { useCart } from "@/hooks/use-cart";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 

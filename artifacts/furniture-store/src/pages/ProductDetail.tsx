@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { useGetProduct, useListProducts } from "@workspace/api-client-react";
 import { useCart } from "@/hooks/use-cart";
 import { useToast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { ChevronRight, ArrowLeft, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import type { Product } from "@/lib/products";

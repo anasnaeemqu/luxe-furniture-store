@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { ProductCard } from "@/components/ProductCard";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useListProducts } from "@workspace/api-client-react";
 import type { Product } from "@/lib/products";
 
 const FADE_UP = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
 };
 
 const STAGGER = {

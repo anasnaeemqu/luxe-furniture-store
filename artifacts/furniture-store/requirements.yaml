@@ -1,0 +1,14 @@
+packages:
+  "framer-motion": "For premium smooth page transitions and scroll animations"
+  "react-hook-form": "For robust form state management in Checkout and Contact"
+  "@hookform/resolvers": "Zod integration for react-hook-form"
+  "zod": "Schema validation for forms"
+
+images:
+  - path: "artifacts/furniture-store/public/images/abstract-texture.png"
+    description: "Subtle warm beige and cream abstract plaster wall texture, highly detailed, soft lighting, minimal"
+    aspect_ratio: "16:9"
+
+notes:
+  - The API hook useSendContactMessage is imported from @workspace/api-client-react
+  - Cart state is managed via React Context and persisted to localStorage

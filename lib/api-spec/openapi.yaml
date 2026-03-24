@@ -1,0 +1,524 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: Furniture Store API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: products
+    description: Product operations
+  - name: orders
+    description: Order operations
+  - name: cart
+    description: Cart sync operations
+  - name: faqs
+    description: Product FAQ operations
+  - name: contact
+    description: Contact form operations
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /products:
+    get:
+      operationId: listProducts
+      tags: [products]
+      summary: List all products
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+
+  /products/{id}:
+    get:
+      operationId: getProduct
+      tags: [products]
+      summary: Get a single product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Product found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "404":
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /categories:
+    get:
+      operationId: listCategories
+      tags: [products]
+      summary: List all product categories
+      responses:
+        "200":
+          description: List of categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+
+  /orders:
+    post:
+      operationId: placeOrder
+      tags: [orders]
+      summary: Place a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlaceOrderRequest"
+      responses:
+        "201":
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlaceOrderResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /cart/{sessionId}/sync:
+    post:
+      operationId: syncCart
+      tags: [cart]
+      summary: Sync cart state to database
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CartSyncRequest"
+      responses:
+        "200":
+          description: Cart synced
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartSyncResponse"
+
+  /cart/{sessionId}:
+    delete:
+      operationId: clearCartSession
+      tags: [cart]
+      summary: Clear cart from database
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Cart cleared
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CartSyncResponse"
+
+  /products/{id}/faqs:
+    get:
+      operationId: listProductFaqs
+      tags: [faqs]
+      summary: List answered FAQs for a product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of answered FAQs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PublicFaqItem"
+
+  /faqs:
+    post:
+      operationId: submitFaq
+      tags: [faqs]
+      summary: Submit a question about a product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SubmitFaqRequest"
+      responses:
+        "201":
+          description: Question submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SubmitFaqResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /admin/faqs:
+    get:
+      operationId: listAdminFaqs
+      tags: [faqs]
+      summary: List all FAQs (admin)
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [pending, answered]
+      responses:
+        "200":
+          description: List of all FAQs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AdminFaqItem"
+
+  /admin/faqs/{id}:
+    patch:
+      operationId: answerFaq
+      tags: [faqs]
+      summary: Post an answer to a FAQ (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnswerFaqRequest"
+      responses:
+        "200":
+          description: FAQ answered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminFaqItem"
+        "404":
+          description: FAQ not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /contact:
+    post:
+      operationId: sendContactMessage
+      tags: [contact]
+      summary: Send contact message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactMessage"
+      responses:
+        "200":
+          description: Message sent successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactResponse"
+        "400":
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "500":
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required: [status]
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          type: string
+        price:
+          type: integer
+        description:
+          type: string
+        dimensions:
+          type: string
+        material:
+          type: string
+        image:
+          type: string
+        thumbnails:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, name, category, price, description, dimensions, material, image, thumbnails]
+
+    OrderItem:
+      type: object
+      properties:
+        productId:
+          type: string
+        name:
+          type: string
+        price:
+          type: integer
+        quantity:
+          type: integer
+      required: [productId, name, price, quantity]
+
+    PlaceOrderRequest:
+      type: object
+      properties:
+        customerName:
+          type: string
+          minLength: 1
+        customerEmail:
+          type: string
+          format: email
+        shippingAddress:
+          type: string
+          minLength: 1
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/OrderItem"
+          minItems: 1
+        subtotal:
+          type: integer
+        shippingCost:
+          type: integer
+        tax:
+          type: integer
+        total:
+          type: integer
+        paymentMethod:
+          type: string
+      required: [customerName, customerEmail, shippingAddress, items, subtotal, shippingCost, tax, total]
+
+    PlaceOrderResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        orderNumber:
+          type: string
+        orderId:
+          type: integer
+      required: [success, orderNumber, orderId]
+
+    CartSyncItem:
+      type: object
+      properties:
+        productId:
+          type: string
+        quantity:
+          type: integer
+        priceAtTime:
+          type: integer
+      required: [productId, quantity, priceAtTime]
+
+    CartSyncRequest:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/CartSyncItem"
+      required: [items]
+
+    CartSyncResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+      required: [success]
+
+    ContactMessage:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        subject:
+          type: string
+          minLength: 1
+        message:
+          type: string
+          minLength: 1
+      required: [name, email, subject, message]
+
+    ContactResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      required: [success, message]
+
+    PublicFaqItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        question:
+          type: string
+        answer:
+          type: string
+        isFeatured:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, question, answer, isFeatured, createdAt]
+
+    AdminFaqItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        productId:
+          type: string
+        customerName:
+          type: string
+        customerEmail:
+          type: string
+        question:
+          type: string
+        answer:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [pending, answered]
+        isFeatured:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+      required: [id, productId, customerName, customerEmail, question, status, isFeatured, createdAt]
+
+    SubmitFaqRequest:
+      type: object
+      properties:
+        productId:
+          type: string
+          minLength: 1
+        customerName:
+          type: string
+          minLength: 1
+        customerEmail:
+          type: string
+          format: email
+        question:
+          type: string
+          minLength: 10
+      required: [productId, customerName, customerEmail, question]
+
+    SubmitFaqResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        id:
+          type: integer
+      required: [success, message, id]
+
+    AnswerFaqRequest:
+      type: object
+      properties:
+        answer:
+          type: string
+          minLength: 1
+        isFeatured:
+          type: boolean
+      required: [answer]
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required: [error]

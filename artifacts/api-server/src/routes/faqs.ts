@@ -21,7 +21,7 @@ const AnswerFaqSchema = z.object({
 
 // GET /api/products/:id/faqs — list answered FAQs for a product (public)
 router.get("/products/:id/faqs", async (req: Request, res: Response) => {
-  const { id } = req.params;
+  const id = req.params.id as string;
   try {
     const faqs = await db
       .select({
@@ -112,7 +112,7 @@ router.get("/admin/faqs", async (req: Request, res: Response) => {
 
 // PATCH /api/admin/faqs/:id — answer a FAQ (admin)
 router.patch("/admin/faqs/:id", async (req: Request, res: Response) => {
-  const id = parseInt(req.params.id, 10);
+  const id = parseInt(req.params.id as string, 10);
   if (isNaN(id)) {
     res.status(400).json({ error: "Invalid FAQ ID" });
     return;

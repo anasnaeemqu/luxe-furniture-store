@@ -21,7 +21,7 @@ router.get("/products", async (_req: Request, res: Response) => {
 // GET /api/products/:id — return a single product
 router.get("/products/:id", async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const [product] = await db
       .select()
       .from(productsTable)

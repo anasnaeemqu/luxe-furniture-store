@@ -18,7 +18,7 @@ const CartSyncSchema = z.object({
 
 // POST /cart/:sessionId/sync — Replace cart items in DB (upsert)
 router.post("/cart/:sessionId/sync", async (req: Request, res: Response) => {
-  const { sessionId } = req.params;
+  const sessionId = req.params.sessionId as string;
   const parsed = CartSyncSchema.safeParse(req.body);
 
   if (!parsed.success || !sessionId) {
@@ -68,7 +68,7 @@ router.post("/cart/:sessionId/sync", async (req: Request, res: Response) => {
 
 // DELETE /cart/:sessionId — Clear cart from DB
 router.delete("/cart/:sessionId", async (req: Request, res: Response) => {
-  const { sessionId } = req.params;
+  const sessionId = req.params.sessionId as string;
 
   try {
     const existing = await db

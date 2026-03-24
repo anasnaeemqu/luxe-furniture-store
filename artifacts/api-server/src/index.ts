@@ -6,25 +6,15 @@ const missingSmtp = smtpVars.filter((v) => !process.env[v]);
 if (missingSmtp.length > 0) {
   console.warn(
     `[Email] ⚠  SMTP not configured — emails will be logged to console only.\n` +
-    `         Missing secrets: ${missingSmtp.join(", ")}\n` +
-    `         Add them in Replit Secrets to enable real email delivery.`
+    `         Missing env vars: ${missingSmtp.join(", ")}\n` +
+    `         Add them in your hosting provider's environment variables to enable real email delivery.`
   );
 }
 
-const rawPort = process.env["PORT"];
-
-if (!rawPort) {
-  throw new Error(
-    "PORT environment variable is required but was not provided.",
-  );
-}
-
-const port = Number(rawPort);
-
-if (Number.isNaN(port) || port <= 0) {
-  throw new Error(`Invalid PORT value: "${rawPort}"`);
-}
+const port = Number(process.env["PORT"]) || 3000;
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+
+export default app;

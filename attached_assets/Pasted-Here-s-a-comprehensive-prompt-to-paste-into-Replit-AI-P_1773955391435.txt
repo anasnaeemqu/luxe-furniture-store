@@ -1,0 +1,34 @@
+Here's a comprehensive prompt to paste into Replit AI:
+
+---
+
+> **Prompt to paste in Replit AI:**
+>
+> "Make this Luxe Furniture Store fully MVP-ready by completing the following in one cohesive implementation:
+>
+> **1. Cart & Checkout Flow (Database-driven)**
+> - Create a `carts` table (session/user based) and `cart_items` table with columns: id, cart_id, product_id, quantity, price_at_time, created_at
+> - Create an `orders` table with columns: id, order_number (auto-generated like LUXE-0001), customer_name, customer_email, customer_phone, shipping_address, billing_address, items (jsonb), subtotal, shipping_cost, tax, total, payment_method, payment_status, order_status, notes, created_at
+> - Wire up all Add to Cart, Update Quantity, Remove Item, and Clear Cart actions to use the database
+> - Make the full checkout form save a real order to the database on submission
+>
+> **2. SMTP Email Notifications (wire up for all 3 flows)**
+> Using the existing SMTP environment variables (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, CONTACT_TO), send branded LUXE-styled HTML emails for:
+> - **Order Confirmation** → send to the customer's email with order summary, items, totals, and order number
+> - **Order Notification** → send to CONTACT_TO (store owner) with full order details including customer info and shipping address
+> - **Contact Form** → send to CONTACT_TO with sender name, email, subject, and message (this already exists in contact.ts, just make sure it's fully wired and working)
+> - **Messages/Inquiries** → if there is a separate messages or inquiry form, wire that up to email CONTACT_TO as well
+>
+> **3. Database Tables for Orders & Messages**
+> - Save every contact form submission to a `messages` table: id, name, email, subject, message, created_at
+> - Save every order to the `orders` table as described above
+> - All tables should be viewable and editable from the Replit Development Database panel
+>
+> **4. MVP Polish**
+> - Show a proper order confirmation page after checkout with the order number
+> - Show cart item count badge on the cart icon that updates in real time
+> - Validate all forms properly before submission
+> - Handle all loading and error states gracefully
+> - Make sure the entire flow works end to end: Browse → Add to Cart → Checkout → Order saved to DB → Emails sent to both customer and store owner
+>
+> Keep all existing UI, styling, and design completely intact. Do not change any frontend visuals."

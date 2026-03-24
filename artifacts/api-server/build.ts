@@ -69,21 +69,6 @@ async function buildAll() {
     logLevel: "info",
   });
 
-  // 2. Build Vercel serverless entry (exports Express app without .listen())
-  const vercelApiDir = path.resolve(__dirname, "..", "..", "api");
-  await esbuild({
-    entryPoints: [path.resolve(__dirname, "src/app.ts")],
-    platform: "node",
-    bundle: true,
-    format: "cjs",
-    outfile: path.resolve(vercelApiDir, "index.js"),
-    define: {
-      "process.env.NODE_ENV": '"production"',
-    },
-    minify: true,
-    external: externals,
-    logLevel: "info",
-  });
 }
 
 buildAll().catch((err) => {

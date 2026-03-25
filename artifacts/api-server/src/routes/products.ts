@@ -1,8 +1,8 @@
-import { Router, type IRouter, type Request, type Response } from "express";
+import { Router, type Request, type Response } from "express";
 import { db, productsTable } from "@workspace/db";
 import { eq } from "drizzle-orm";
 
-const router: IRouter = Router();
+const router = Router();
 
 // GET /api/products — return all products
 router.get("/products", async (_req: Request, res: Response) => {

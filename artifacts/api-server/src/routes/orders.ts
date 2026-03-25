@@ -1,11 +1,11 @@
-import { Router, type IRouter, type Request, type Response } from "express";
+import { Router, type Request, type Response } from "express";
 import { db } from "@workspace/db";
 import { ordersTable } from "@workspace/db/schema";
 import { eq } from "drizzle-orm";
 import { sendOrderConfirmation, sendOrderNotification } from "../lib/email";
 import { z } from "zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 const OrderItemSchema = z.object({
   productId: z.string().min(1),

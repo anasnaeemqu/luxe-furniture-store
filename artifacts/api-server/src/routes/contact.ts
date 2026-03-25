@@ -1,10 +1,10 @@
-import { Router, type IRouter, type Request, type Response } from "express";
+import { Router, type Request, type Response } from "express";
 import { db } from "@workspace/db";
 import { messagesTable } from "@workspace/db/schema";
 import { sendContactEmail } from "../lib/email";
 import { SendContactMessageBody } from "@workspace/api-zod";
 
-const router: IRouter = Router();
+const router = Router();
 
 router.post("/contact", async (req: Request, res: Response) => {
   const parsed = SendContactMessageBody.safeParse(req.body);

@@ -1,4 +1,4 @@
-import app from "./app";
+import app from "./app.js";
 
 // ─── SMTP startup check ───────────────────────────────────────────────────────
 const smtpVars = ["SMTP_HOST", "SMTP_PORT", "SMTP_USER", "SMTP_PASS", "CONTACT_TO"] as const;

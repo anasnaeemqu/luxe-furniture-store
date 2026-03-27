@@ -2,7 +2,7 @@ import { Router, type Request, type Response } from "express";
 import { db } from "@workspace/db";
 import { faqsTable, productsTable } from "@workspace/db/schema";
 import { eq, and } from "drizzle-orm";
-import { sendFaqNotification } from "../lib/email";
+import { sendFaqNotification } from "../lib/email.js";
 import { z } from "zod";
 
 const router = Router();

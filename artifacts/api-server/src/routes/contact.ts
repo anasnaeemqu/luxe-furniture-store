@@ -1,7 +1,7 @@
 import { Router, type Request, type Response } from "express";
 import { db } from "@workspace/db";
 import { messagesTable } from "@workspace/db/schema";
-import { sendContactEmail } from "../lib/email";
+import { sendContactEmail } from "../lib/email.js";
 import { SendContactMessageBody } from "@workspace/api-zod";
 
 const router = Router();

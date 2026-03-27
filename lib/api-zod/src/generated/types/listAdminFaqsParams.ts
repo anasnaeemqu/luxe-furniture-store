@@ -5,7 +5,7 @@
  * Furniture Store API
  * OpenAPI spec version: 0.1.0
  */
-import type { ListAdminFaqsStatus } from "./listAdminFaqsStatus";
+import type { ListAdminFaqsStatus } from "./listAdminFaqsStatus.js";
 
 export type ListAdminFaqsParams = {
   status?: ListAdminFaqsStatus;

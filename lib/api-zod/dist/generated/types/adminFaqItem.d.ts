@@ -5,7 +5,7 @@
  * Furniture Store API
  * OpenAPI spec version: 0.1.0
  */
-import type { AdminFaqItemStatus } from "./adminFaqItemStatus";
+import type { AdminFaqItemStatus } from "./adminFaqItemStatus.js";
 export interface AdminFaqItem {
     id: number;
     productId: string;

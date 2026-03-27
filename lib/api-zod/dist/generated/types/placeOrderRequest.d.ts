@@ -5,7 +5,7 @@
  * Furniture Store API
  * OpenAPI spec version: 0.1.0
  */
-import type { OrderItem } from "./orderItem";
+import type { OrderItem } from "./orderItem.js";
 export interface PlaceOrderRequest {
     /** @minLength 1 */
     customerName: string;

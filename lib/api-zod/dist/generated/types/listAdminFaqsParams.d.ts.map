@@ -1,1 +1,1 @@
-{"version":3,"file":"listAdminFaqsParams.d.ts","sourceRoot":"","sources":["../../../src/generated/types/listAdminFaqsParams.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,OAAO,KAAK,EAAE,mBAAmB,EAAE,MAAM,uBAAuB,CAAC;AAEjE,MAAM,MAAM,mBAAmB,GAAG;IAChC,MAAM,CAAC,EAAE,mBAAmB,CAAC;CAC9B,CAAC"}
+{"version":3,"file":"listAdminFaqsParams.d.ts","sourceRoot":"","sources":["../../../src/generated/types/listAdminFaqsParams.ts"],"names":[],"mappings":"AAAA;;;;;;GAMG;AACH,OAAO,KAAK,EAAE,mBAAmB,EAAE,MAAM,0BAA0B,CAAC;AAEpE,MAAM,MAAM,mBAAmB,GAAG;IAChC,MAAM,CAAC,EAAE,mBAAmB,CAAC;CAC9B,CAAC"}

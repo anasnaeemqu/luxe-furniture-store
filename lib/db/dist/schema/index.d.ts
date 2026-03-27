@@ -1,6 +1,6 @@
-export * from "./products";
-export * from "./orders";
-export * from "./messages";
-export * from "./carts";
-export * from "./faqs";
+export * from "./products.js";
+export * from "./orders.js";
+export * from "./messages.js";
+export * from "./carts.js";
+export * from "./faqs.js";
 //# sourceMappingURL=index.d.ts.map

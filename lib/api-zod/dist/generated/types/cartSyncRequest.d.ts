@@ -5,7 +5,7 @@
  * Furniture Store API
  * OpenAPI spec version: 0.1.0
  */
-import type { CartSyncItem } from "./cartSyncItem";
+import type { CartSyncItem } from "./cartSyncItem.js";
 export interface CartSyncRequest {
     items: CartSyncItem[];
 }

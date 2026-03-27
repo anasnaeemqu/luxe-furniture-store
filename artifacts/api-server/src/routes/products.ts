@@ -1,7 +1,5 @@
-import { Router, type Request, type Response } from "express";
-import { db, productsTable } from "@workspace/db";
-import { eq } from "drizzle-orm";
-
+import { Router } from "express";
+import { db, eq, productsTable } from "@workspace/db";
 const router = Router();
 
 // GET /api/products — return all products

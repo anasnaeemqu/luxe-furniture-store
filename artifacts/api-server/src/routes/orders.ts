@@ -1,7 +1,5 @@
-import { Router, type Request, type Response } from "express";
-import { db } from "@workspace/db";
-import { ordersTable } from "@workspace/db/schema";
-import { eq } from "drizzle-orm";
+import { Router } from "express";
+import { db, eq, ordersTable } from "@workspace/db";
 import { sendOrderConfirmation, sendOrderNotification } from "../lib/email.js";
 import { z } from "zod";
 

@@ -1,7 +1,5 @@
-import { Router, type Request, type Response } from "express";
-import { db } from "@workspace/db";
-import { faqsTable, productsTable } from "@workspace/db/schema";
-import { eq, and } from "drizzle-orm";
+import { Router } from "express";
+import { db, eq, and, faqsTable, productsTable } from "@workspace/db";
 import { sendFaqNotification } from "../lib/email.js";
 import { z } from "zod";
 

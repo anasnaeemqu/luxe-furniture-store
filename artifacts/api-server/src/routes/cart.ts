@@ -1,7 +1,5 @@
-import { Router, type Request, type Response } from "express";
-import { db } from "@workspace/db";
-import { cartsTable, cartItemsTable } from "@workspace/db/schema";
-import { eq } from "drizzle-orm";
+import { Router } from "express";
+import { db, eq, cartsTable, cartItemsTable } from "@workspace/db";
 import { z } from "zod";
 
 const router = Router();

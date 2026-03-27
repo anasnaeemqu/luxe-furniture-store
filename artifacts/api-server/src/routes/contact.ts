@@ -1,6 +1,5 @@
-import { Router, type Request, type Response } from "express";
-import { db } from "@workspace/db";
-import { messagesTable } from "@workspace/db/schema";
+import { Router } from "express";
+import { db, messagesTable } from "@workspace/db";
 import { sendContactEmail } from "../lib/email.js";
 import { SendContactMessageBody } from "@workspace/api-zod";
 

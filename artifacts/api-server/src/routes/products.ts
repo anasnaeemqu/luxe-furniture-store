@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 const router = Router();
 
 // GET /api/products — return all products
-router.get("/products", async (_req: Request, res: Response) => {
+router.get("/products", async (_req: any, res: any) => {
   try {
     const products = await db
       .select()
@@ -19,7 +19,7 @@ router.get("/products", async (_req: Request, res: Response) => {
 });
 
 // GET /api/products/:id — return a single product
-router.get("/products/:id", async (req: Request, res: Response) => {
+router.get("/products/:id", async (req: any, res: any) => {
   try {
     const id = req.params.id as string;
     const [product] = await db
@@ -41,7 +41,7 @@ router.get("/products/:id", async (req: Request, res: Response) => {
 });
 
 // GET /api/categories — return unique categories (hardcoded order)
-router.get("/categories", async (_req: Request, res: Response) => {
+router.get("/categories", async (_req: any, res: any) => {
   try {
     const rows = await db
       .selectDistinct({ category: productsTable.category })

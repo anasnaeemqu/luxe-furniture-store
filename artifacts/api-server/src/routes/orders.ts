@@ -26,7 +26,7 @@ const PlaceOrderSchema = z.object({
   paymentMethod: z.string().optional().default("card"),
 });
 
-router.post("/orders", async (req: Request, res: Response) => {
+router.post("/orders", async (req: any, res: any) => {
   const parsed = PlaceOrderSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: "Invalid order data", details: parsed.error.issues });

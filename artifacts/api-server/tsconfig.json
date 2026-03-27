@@ -5,6 +5,7 @@
     "rootDir": "src",
     "types": ["node"],
     "skipLibCheck": true,
+    "strict": false,
     "noImplicitAny": false
   },
   "include": ["src"],

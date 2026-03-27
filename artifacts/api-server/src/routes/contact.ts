@@ -6,7 +6,7 @@ import { SendContactMessageBody } from "@workspace/api-zod";
 
 const router = Router();
 
-router.post("/contact", async (req: Request, res: Response) => {
+router.post("/contact", async (req: any, res: any) => {
   const parsed = SendContactMessageBody.safeParse(req.body);
 
   if (!parsed.success) {

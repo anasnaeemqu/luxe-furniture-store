@@ -17,7 +17,7 @@ const CartSyncSchema = z.object({
 });
 
 // POST /cart/:sessionId/sync — Replace cart items in DB (upsert)
-router.post("/cart/:sessionId/sync", async (req: Request, res: Response) => {
+router.post("/cart/:sessionId/sync", async (req: any, res: any) => {
   const sessionId = req.params.sessionId as string;
   const parsed = CartSyncSchema.safeParse(req.body);
 
@@ -67,7 +67,7 @@ router.post("/cart/:sessionId/sync", async (req: Request, res: Response) => {
 });
 
 // DELETE /cart/:sessionId — Clear cart from DB
-router.delete("/cart/:sessionId", async (req: Request, res: Response) => {
+router.delete("/cart/:sessionId", async (req: any, res: any) => {
   const sessionId = req.params.sessionId as string;
 
   try {

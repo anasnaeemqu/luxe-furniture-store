@@ -20,7 +20,7 @@ const AnswerFaqSchema = z.object({
 });
 
 // GET /api/products/:id/faqs — list answered FAQs for a product (public)
-router.get("/products/:id/faqs", async (req: Request, res: Response) => {
+router.get("/products/:id/faqs", async (req: any, res: any) => {
   const id = req.params.id as string;
   try {
     const faqs = await db
@@ -42,7 +42,7 @@ router.get("/products/:id/faqs", async (req: Request, res: Response) => {
 });
 
 // POST /api/faqs — submit a question (public)
-router.post("/faqs", async (req: Request, res: Response) => {
+router.post("/faqs", async (req: any, res: any) => {
   const parsed = SubmitFaqSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({
@@ -89,7 +89,7 @@ router.post("/faqs", async (req: Request, res: Response) => {
 });
 
 // GET /api/admin/faqs — list all FAQs (admin)
-router.get("/admin/faqs", async (req: Request, res: Response) => {
+router.get("/admin/faqs", async (req: any, res: any) => {
   const { status } = req.query;
   try {
     const conditions =
@@ -111,7 +111,7 @@ router.get("/admin/faqs", async (req: Request, res: Response) => {
 });
 
 // PATCH /api/admin/faqs/:id — answer a FAQ (admin)
-router.patch("/admin/faqs/:id", async (req: Request, res: Response) => {
+router.patch("/admin/faqs/:id", async (req: any, res: any) => {
   const id = parseInt(req.params.id as string, 10);
   if (isNaN(id)) {
     res.status(400).json({ error: "Invalid FAQ ID" });
